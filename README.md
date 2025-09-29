@@ -1,3 +1,66 @@
+# Confidential Payroll Management Platform
+
+(Forked from the [`"Aztec Standards"`](https://github.com/defi-wonderland/aztec-standards) repo, which is powered by DeFi Wonderland)
+
+<br>
+
+## Techinical Stack
+
+- `aztec` package: `v2.0.3` (Not `v1.2.0`)
+- `aztec-nargo`: `v1.0.0-beta.11` (or the `latest` version)
+- `Noir`: `v1.0.0-beta.11`
+
+<br>
+
+## Installation
+
+- Install the `aztec-nargo` module `v1.0.0-beta.11` (or the `latest` version) into the **local machine**:
+```bash
+aztec-up -v latest
+```
+
+<br>
+
+- Install the `Noir` lang `v1.0.0-beta.11` into the **local machine**:
+```bash
+noirup --version 1.0.0-beta.11
+```
+
+<br>
+
+## SC test
+
+- 0/ Move the root directory (i.e. The root directory of the Dripper contract):
+```bash
+cd src/dripper
+```
+
+<br>
+
+- 1/ Compile the SCs:
+```bash
+aztec-nargo compile
+```
+
+<br>
+
+- 2/ Run the SC test
+```bash
+aztec test
+```
+
+
+
+<br>
+
+## Deploy a SC on Aztec `Testnet`
+- TBD
+
+<br>
+
+<hr>
+
+
 # Aztec Standards
 
 [![npm version](https://img.shields.io/npm/v/@defi-wonderland/aztec-standards.svg)](https://www.npmjs.com/package/@defi-wonderland/aztec-standards)
