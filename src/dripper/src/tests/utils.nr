@@ -14,12 +14,12 @@ pub unconstrained fn setup_contract(
     // Setup env, generate keys
     let mut env = TestEnvironment::new();
     let (owner, user) = if with_account_contracts {
-        let owner = env.create_contract_account(1);
-        let user = env.create_contract_account(2);
+        let owner = env.create_contract_account();
+        let user = env.create_contract_account();
         (owner, user)
     } else {
-        let owner = env.create_light_account(1);
-        let user = env.create_light_account(2);
+        let owner = env.create_light_account();
+        let user = env.create_light_account();
         (owner, user)
     };
 
