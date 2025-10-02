@@ -6,6 +6,53 @@ use uint_note::uint_note::UintNote;
 
 
 /**
+ * @notice - Tests for the drip_to_public() in the Dripper contract
+ */
+#[test]
+unconstrained fn test_drip_to_public() {
+    let (mut env, dripper_contract_address, token_contract_address, owner, _user) =
+        crate::tests::utils::setup_contract(true);
+    let dripper = Dripper::at(dripper_contract_address);
+
+    // Drip to public
+    let drip_amount = 5000u64;
+    let drip_to_public_call_interface =
+        dripper.drip_to_public(token_contract_address, drip_amount);
+    drip_to_public_call_interface.call(&mut env);
+
+    // Check public balance
+    token_helper::check_public_balance(
+        token_contract_address,
+        owner,
+        drip_amount as u128,
+    );
+}
+
+/**
+ * @notice - Tests for the drip_to_private() in the Dripper contract
+ */
+#[test]
+unconstrained fn test_drip_to_private() {
+    let (mut env, dripper_contract_address, token_contract_address, owner, _user) =
+        crate::tests::utils::setup_contract(true);
+    let dripper = Dripper::at(dripper_contract_address);
+
+    // Drip to private
+    let drip_amount = 5000u64;
+    let drip_to_private_call_interface =
+        dripper.drip_to_private(token_contract_address, drip_amount);
+    drip_to_private_call_interface.call(&mut env.private());
+
+    // Check private balance
+    token_helper::check_private_balance(
+        token_contract_address,
+        owner,
+        drip_amount as u128,
+    );
+}
+
+
+/**
  * @notice - transfer_private_on_behalf_of_other() in the Token contract
  */
 #[test]
