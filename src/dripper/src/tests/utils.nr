@@ -23,12 +23,17 @@ pub unconstrained fn setup_contract(
         (owner, user)
     };
 
-    let acontract = deploy_contract(&mut env, owner);
+    // @dev - deploy the Dripper contract
+    let dripper_contract = deploy_dripper_contract(&mut env, owner);
 
-    (&mut env, acontract.to_address(), owner, user)
+    // @dev - deploy the Token contract
+    let initial_supply = 1_000_000u128;
+    let token_contract_address = token_helper::deploy_token_with_initial_supply(&mut env, owner, initial_supply, user);
+
+    (&mut env, dripper_contract.to_address(), token_contract_address, owner, user)
 }
 
-pub unconstrained fn deploy_contract(
+pub unconstrained fn deploy_dripper_contract(
     env: &mut TestEnvironment,
     owner: AztecAddress,
 ) -> ContractInstance {
