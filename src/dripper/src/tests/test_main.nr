@@ -5,7 +5,12 @@ use crate::{
 
 //use crate::Token;
 use dep::token::Token;
-use aztec::{note::constants::MAX_NOTES_PER_PAGE, test::helpers::authwit as authwit_cheatcodes};
+use aztec::{
+    test::helpers::test_environment::TestEnvironment,
+    protocol_types::{address::AztecAddress, storage::map::derive_storage_slot_in_map},
+    note::constants::MAX_NOTES_PER_PAGE, 
+    test::helpers::authwit as authwit_cheatcodes
+};
 use uint_note::uint_note::UintNote;
 
 
@@ -26,6 +31,7 @@ unconstrained fn test_drip_to_public() {
 
     // Check public balance
     token_helper::check_public_balance(
+        &mut env,
         token_contract_address,
         owner,
         drip_amount as u128,
@@ -39,6 +45,7 @@ unconstrained fn test_drip_to_public() {
 unconstrained fn test_drip_to_private() {
     let (mut env, dripper_contract_address, token_contract_address, owner, _user) =
         crate::tests::utils::setup_contract(true);
+
     let dripper = Dripper::at(dripper_contract_address);
 
     // Drip to private
