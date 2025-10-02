@@ -1,4 +1,8 @@
-use crate::tests::token_helper::{self, mint_amount};
+use crate::{
+    Dripper,
+    tests::token_helper::{self, mint_amount}
+};
+
 //use crate::Token;
 use dep::token::Token;
 use aztec::{note::constants::MAX_NOTES_PER_PAGE, test::helpers::authwit as authwit_cheatcodes};
