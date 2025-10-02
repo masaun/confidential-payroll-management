@@ -39,8 +39,9 @@ pub unconstrained fn deploy_dripper_contract(
 ) -> ContractInstance {
     let initializer_call_interface = Dripper::interface().constructor();
     let contract_instance = env
-        .deploy("./@dripper_contract", "Dripper")
-        .with_public_void_initializer(owner, initializer_call_interface);
+        .deploy("Dripper")
+        .with_public_initializer(owner, initializer_call_interface);
+    
     env.mine_block();
 
     contract_instance
