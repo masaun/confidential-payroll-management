@@ -1,4 +1,4 @@
-use crate::Token;
+use dep::token::Token;
 use aztec::{
     note::{
         constants::MAX_NOTES_PER_PAGE, note_getter::view_notes,
