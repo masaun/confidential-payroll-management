@@ -31,7 +31,7 @@ unconstrained fn test_drip_to_public() {
 
     // Check public balance
     token_helper::check_public_balance(
-        &mut env,
+        env,
         token_contract_address,
         owner,
         drip_amount as u128,
@@ -56,6 +56,7 @@ unconstrained fn test_drip_to_private() {
 
     // Check private balance
     token_helper::check_private_balance(
+        env,
         token_contract_address,
         owner,
         drip_amount as u128,
@@ -93,6 +94,6 @@ unconstrained fn transfer_private_on_behalf_of_other() {
     );
 
     // Check balances
-    token_helper::check_private_balance(token_contract_address, owner, mint_amount - transfer_amount);
-    token_helper::check_private_balance(token_contract_address, recipient, transfer_amount);
+    token_helper::check_private_balance(env, token_contract_address, owner, mint_amount - transfer_amount);
+    token_helper::check_private_balance(env, token_contract_address, recipient, transfer_amount);
 }
