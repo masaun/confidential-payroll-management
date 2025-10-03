@@ -38,7 +38,7 @@ pub unconstrained fn setup_contract(
 }
 
 pub unconstrained fn deploy_dripper_contract(
-    env: TestEnvironment,
+    env: &mut TestEnvironment, // @dev - The state is changed multiple times in this fuction (i.e. when the env.mine_block(). Hence, "env" parameter should be defined as a mutable reference (= &mut)
     owner: AztecAddress,
 ) -> AztecAddress {
     let initializer_call_interface = Dripper::interface().constructor();
