@@ -1,4 +1,7 @@
 use aztec::macros::aztec;
+use dep::token::Token;
+
+mod tests; // @dev - tests module (src/dripper/src/tests)
 
 #[aztec]
 pub contract Dripper {
