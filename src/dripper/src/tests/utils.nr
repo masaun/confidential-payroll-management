@@ -34,11 +34,11 @@ pub unconstrained fn setup_contract(
     let initial_supply = 1_000_000u128;
     let token_contract_address = token_helper::deploy_token_with_initial_supply(&mut env, owner, initial_supply, user);
 
-    (&mut env, dripper_contract_address, token_contract_address, owner, user)
+    (env, dripper_contract_address, token_contract_address, owner, user)
 }
 
 pub unconstrained fn deploy_dripper_contract(
-    env: &mut TestEnvironment,
+    env: TestEnvironment,
     owner: AztecAddress,
 ) -> AztecAddress {
     let initializer_call_interface = Dripper::interface().constructor();
