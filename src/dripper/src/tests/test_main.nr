@@ -27,7 +27,11 @@ unconstrained fn test_drip_to_public() {
     let drip_amount = 5000u64;
     let drip_to_public_call_interface =
         dripper.drip_to_public(token_contract_address, drip_amount);
-    drip_to_public_call_interface.call(env);
+    
+    env.call_public(
+        owner,
+        drip_to_public_call_interface
+    );
 
     // Check public balance
     token_helper::check_public_balance(
@@ -52,7 +56,11 @@ unconstrained fn test_drip_to_private() {
     let drip_amount = 5000u64;
     let drip_to_private_call_interface =
         dripper.drip_to_private(token_contract_address, drip_amount);
-    drip_to_private_call_interface.call(&mut env.private());
+
+    env.call_private(
+        owner,
+        drip_to_private_call_interface
+    );
 
     // Check private balance
     token_helper::check_private_balance(
