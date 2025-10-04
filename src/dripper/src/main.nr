@@ -1,5 +1,5 @@
-use aztec::macros::aztec;
 use dep::token::Token;
+use aztec::macros::aztec;
 
 mod tests; // @dev - tests module (src/dripper/src/tests)
 
