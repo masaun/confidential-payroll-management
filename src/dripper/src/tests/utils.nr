@@ -1,16 +1,12 @@
 use aztec::{
-    //prelude::AztecAddress, 
+    //prelude::AztecAddress,
     protocol_types::{
-        contract_instance::ContractInstance,
-        address::AztecAddress, // @dev - aztec v2.0.3
+        contract_instance::ContractInstance, address::AztecAddress, // @dev - aztec v2.0.3
     },
     test::helpers::test_environment::TestEnvironment,
 };
 
-use crate::{
-    Dripper,
-    tests::token_helper::{self, mint_amount}
-};
+use crate::{Dripper, tests::token_helper::{self, mint_amount}};
 
 pub unconstrained fn setup_contract(
     with_account_contracts: bool,
@@ -32,7 +28,8 @@ pub unconstrained fn setup_contract(
 
     // @dev - deploy the Token contract
     let initial_supply = 1_000_000u128;
-    let token_contract_address = token_helper::deploy_token_with_initial_supply(&mut env, owner, initial_supply, user);
+    let token_contract_address =
+        token_helper::deploy_token_with_initial_supply(&mut env, owner, initial_supply, user);
 
     (env, dripper_contract_address, token_contract_address, owner, user)
 }
@@ -42,10 +39,9 @@ pub unconstrained fn deploy_dripper_contract(
     owner: AztecAddress,
 ) -> AztecAddress {
     let initializer_call_interface = Dripper::interface().constructor();
-    let dripper_contract_address = env
-        .deploy("Dripper")
-        .with_public_initializer(owner, initializer_call_interface);
-    
+    let dripper_contract_address =
+        env.deploy("Dripper").with_public_initializer(owner, initializer_call_interface);
+
     env.mine_block();
 
     //let dripper_contract_instance: ContractInstance = Dripper::at(contract_address);
